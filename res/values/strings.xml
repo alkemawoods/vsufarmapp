@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trojan SmartFarm</string>
+    <string name="upc_text_label">Tag ID (UPC):</string>
+    <string name="scan_button_label">Scan</string>
+    <string name="control_label">Control</string>
+    <string name="experimental_label">Experimental</string>
+    <string name="variety_label">Variety:</string>
+    <string name="newtag_label">Create New Tag</string>
+    <string name="tag_menu_label">New Tag</string>
+    <string name="weather_menu_label">Weather</string>
+    <string name="scan_default_text">"Press 'scan' to scan barcode"</string>
+    <string name="growthdata_label">Growth Data</string>
+    <string name="takephoto_button_label">Take Photo</string>
+    <string name="numleaves"># of Leaves:</string>
+    <string name="numberries"># of Berries:</string>
+    <string name="plantheight">Plant Height (cm):</string>
+    <string name="insectpresent">Insects Present?</string>
+    <string name="addnotes">Notes:</string>
+    <string name="savedata">Save Data</string>
+    <string name="insectdata_label">Insect Data</string>
+    <string name="diseasedata_label">Disease Data</string>
+    <string name="maintenancedata_label">Maintenance Data</string>
+    <string name="blank_label"></string>
+    <string name="disease_presence_label">Disease Present?</string>
+    <string name="pruned">Pruned?</string>
+    <string name="shocked">Shocked Treated?</string>
+    <string name="scan_menu_label">Scan &amp; Retrieve</string>
+    <string name="data_menu_label">Enter Data</string>
+</resources>

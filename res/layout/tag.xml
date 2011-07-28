@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/upcLabel" android:text="@string/upc_text_label"></TextView>
+<TableLayout android:layout_height="wrap_content" android:id="@+id/tableLayout1" android:layout_width="match_parent">
+    <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <EditText android:text="@string/scan_default_text" android:layout_height="wrap_content" android:id="@+id/upcText" android:editable="false" android:layout_width="match_parent"></EditText>
+        <Button android:onClick="startScan" android:id="@+id/tagScanButton" android:layout_height="wrap_content" android:text="@string/scan_button_label" android:layout_width="wrap_content"></Button>
+    </TableRow>
+    <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+    <TableRow android:id="@+id/tableRow3" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+    <TableRow android:id="@+id/tableRow4" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+</TableLayout>
+<RadioGroup android:layout_height="wrap_content" android:id="@+id/controlRadioGroup" android:layout_width="wrap_content" android:paddingTop="20px">
+    <RadioButton android:id="@+id/controlRadio" android:layout_height="wrap_content" android:text="@string/control_label" android:layout_width="wrap_content" android:checked="true"></RadioButton>
+    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/experimentalRadio" android:text="@string/experimental_label"></RadioButton>
+</RadioGroup>
+<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/variety_label" android:id="@+id/varietyLabel" android:paddingTop="20px"></TextView>
+<EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/varietyText"></EditText>
+<Button android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_marginTop="5pt" android:text="@string/newtag_label" android:id="@+id/createTagButton" android:onClick="createTag"></Button>
+</LinearLayout>

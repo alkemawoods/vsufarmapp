@@ -1,0 +1,35 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:layout_marginRight="5px">
+    <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/growthdata_label" android:id="@+id/growthDataLabel"></TextView>
+    <TableLayout android:layout_height="wrap_content" android:id="@+id/tableLayout1" android:layout_width="match_parent">
+        <TableRow android:id="@+id/tableRow1" android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/numleaves" android:id="@+id/numLeavesText"></TextView>
+            <EditText android:layout_width="wrap_content" android:inputType="number" android:layout_height="wrap_content" android:id="@+id/numLeavesEdit"></EditText>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/numberries" android:id="@+id/numBerriesText"></TextView>
+            <EditText android:layout_width="wrap_content" android:inputType="number" android:layout_height="wrap_content" android:id="@+id/numBerriesEdit">
+                <requestFocus></requestFocus>
+            </EditText>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow3" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:id="@+id/textView4" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/plantheight"></TextView>
+            <EditText android:layout_width="wrap_content" android:inputType="number" android:layout_height="wrap_content" android:id="@+id/heightEdit"></EditText>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow4" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:maxHeight="2px" android:layout_width="wrap_content" android:maxWidth="2px" android:src="@drawable/icon" android:id="@+id/growthPhoto" android:layout_height="wrap_content"></ImageView>
+            <Button android:layout_width="wrap_content" android:onClick="takePhoto" android:layout_height="wrap_content" android:text="@string/takephoto_button_label" android:id="@+id/growthPhotoButton"></Button>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow5" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/addnotes" android:id="@+id/notesText"></TextView>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow6" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        </TableRow>
+    </TableLayout>
+    <EditText android:inputType="textMultiLine" android:layout_height="wrap_content" android:id="@+id/notesEdit" android:layout_width="match_parent"></EditText>
+    <Button android:layout_height="wrap_content" android:text="@string/savedata" android:layout_width="match_parent" android:onClick="saveGrowthData" android:id="@+id/savedata_button"></Button>
+    <Button android:id="@+id/button2" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/insectdata_label" android:onClick="startInsectDataActivity"></Button>
+</LinearLayout>

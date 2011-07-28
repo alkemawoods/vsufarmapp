@@ -1,0 +1,25 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:layout_marginRight="5px">
+    <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/insectdata_label" android:id="@+id/insectDataLabel"></TextView>
+    <TableLayout android:layout_height="wrap_content" android:id="@+id/tableLayout1" android:layout_width="match_parent">
+        <TableRow android:id="@+id/tableRow1" android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/insectpresent" android:id="@+id/insects_label"></TextView>
+            <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/insectsCheck" android:text="@string/blank_label"></CheckBox>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow4" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:maxHeight="2px" android:layout_width="wrap_content" android:maxWidth="2px" android:src="@drawable/icon" android:layout_height="wrap_content" android:id="@+id/insectPhoto"></ImageView>
+            <Button android:layout_width="wrap_content" android:onClick="takePhoto" android:layout_height="wrap_content" android:text="@string/takephoto_button_label" android:id="@+id/insectPhotoButton"></Button>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow5" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:text="@string/addnotes" android:id="@+id/notesText"></TextView>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow6" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        </TableRow>
+    </TableLayout>
+    <EditText android:inputType="textMultiLine" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/insectNotesEdit"></EditText>
+    <Button android:id="@+id/button1" android:layout_height="wrap_content" android:text="@string/savedata" android:layout_width="match_parent" android:onClick="saveInsectData"></Button>
+    <Button android:id="@+id/button2" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/diseasedata_label" android:onClick="startDiseaseDataActivity"></Button>
+</LinearLayout>
