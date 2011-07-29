@@ -55,6 +55,10 @@ abstract public class TrojanSmartFarmActivity extends OrmLiteBaseActivity<DBHelp
 	    case R.id.scan_menitem:
 	    	startViewDataActivity();
 	    	return true;
+	    case R.id.exit_menitem:
+	    	super.onDestroy();
+	    	System.exit(0);
+	    	return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
@@ -71,7 +75,6 @@ abstract public class TrojanSmartFarmActivity extends OrmLiteBaseActivity<DBHelp
 	}
 	
 	public void startViewDataActivity() {
-		//IntentIntegrator.initiateScan(this);
 		Intent intent = new Intent(this, ViewDataActivity.class);
 		startActivity(intent);
 	}
@@ -136,12 +139,7 @@ abstract public class TrojanSmartFarmActivity extends OrmLiteBaseActivity<DBHelp
 			return null;
 		}
 	}
-	
-	//private String getDateTime() {
-    //    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    //    Date date = new Date();
-    //    return dateFormat.format(date);
-    //} 
+
 	
 	// does something with UPC code from scanner
 	abstract protected void scanCallback(String upc);

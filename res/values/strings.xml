@@ -27,4 +27,5 @@
     <string name="shocked">Shocked Treated?</string>
     <string name="scan_menu_label">Scan &amp; Retrieve</string>
     <string name="data_menu_label">Enter Data</string>
+    <string name="exit_menu_label">Exit</string>
 </resources>

@@ -47,12 +47,12 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 				simpleC++;
 			}
 			sb.append("------------------------------------------\n");
-			for (IDTag simple : list) {
-				int ret = simpleDao.delete(simple);
-				sb.append("deleted id " + simple.getUpcCode() + " returned ").append(ret).append("\n");
-				Log.i(LOG_TAG, "deleting simple(" + simple.getUpcCode() + ") returned " + ret);
-				simpleC++;
-			}
+			//for (IDTag simple : list) {
+			//int ret = simpleDao.delete(simple);
+			//	sb.append("deleted id " + simple.getUpcCode() + " returned ").append(ret).append("\n");
+			//	Log.i(LOG_TAG, "deleting simple(" + simple.getUpcCode() + ") returned " + ret);
+			//	simpleC++;
+			//}
 
 			int createNum;
 			do {
@@ -60,20 +60,20 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 			} while (createNum == list.size());
 			for (int i = 0; i < createNum; i++) {
 				// create a new simple object
-				String millis = String.valueOf(System.currentTimeMillis());
-				IDTag simple = new IDTag(millis, true, "Test");
+				//String millis = String.valueOf(System.currentTimeMillis());
+				//IDTag simple = new IDTag(millis, true, "Test");
 				// store it in the database
-				simpleDao.create(simple);
-				Log.i(LOG_TAG, "created simple(" + millis + ")");
+				//simpleDao.create(simple);
+				//Log.i(LOG_TAG, "created simple(" + millis + ")");
 				// output it
-				sb.append("------------------------------------------\n");
-				sb.append("created new entry #").append(i + 1).append(":\n");
-				sb.append(simple).append("\n");
-				try {
-					Thread.sleep(5);
-				} catch (InterruptedException e) {
+				//sb.append("------------------------------------------\n");
+				//sb.append("created new entry #").append(i + 1).append(":\n");
+				//sb.append(simple).append("\n");
+				//try {
+				//	Thread.sleep(5);
+				//} catch (InterruptedException e) {
 					// ignore
-				}
+				//}
 			}
 
 			tv.setText(sb.toString());
