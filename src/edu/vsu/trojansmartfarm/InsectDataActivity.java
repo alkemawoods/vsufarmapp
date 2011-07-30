@@ -51,7 +51,7 @@ public class InsectDataActivity extends TrojanSmartFarmActivity {
 		String notes = ((EditText) findViewById(R.id.insectNotesEdit)).getText().toString();
 		boolean insectsPresent = ((CheckBox) findViewById(R.id.insectsCheck)).isChecked();
 		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		InsectDataSet ids = new InsectDataSet(tag, new Date(), photo, notes, insectsPresent);
+		InsectDataSet ids = new InsectDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, insectsPresent);
 		Dao<InsectDataSet, Date> insectDao = new DBHelper(this).getInsectDao();
 		insectDao.create(ids);
 		Toast.makeText(this, "Data was saved.", Toast.LENGTH_LONG).show();

@@ -5,12 +5,15 @@
          android:layout_height="match_parent"
          android:paddingLeft="8dp"
          android:paddingRight="8dp">
+     <TextView android:text="TextView" android:layout_width="wrap_content" android:id="@+id/metatext" android:layout_height="wrap_content"></TextView>
+
      <ListView android:id="@android:id/list"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:background="#0000AA"
-               android:layout_weight="1"
+               android:layout_weight="5"
                android:drawSelectorOnTop="false"/>
+     <Gallery android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/gallery1"></Gallery>
      <TextView android:id="@android:id/empty"
                android:layout_width="match_parent"
                android:layout_height="match_parent"

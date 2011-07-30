@@ -3,12 +3,16 @@ package edu.vsu.trojansmartfarm;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +29,7 @@ public class ViewDataActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sensordata);
+		setContentView(R.layout.dataview);
 		
 		IntentIntegrator.initiateScan(this);
 	}
@@ -35,6 +39,16 @@ public class ViewDataActivity extends ListActivity {
 		setListAdapter(new ArrayAdapter(this,
 				android.R.layout.simple_list_item_1, this.fetchTagData()));
 	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		TextView tv = (TextView) v;
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(tv.getText());
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+	
 
 	public ArrayList<String> fetchTagData() {
 		ArrayList<String> listItems = new ArrayList<String>();
@@ -43,15 +57,48 @@ public class ViewDataActivity extends ListActivity {
 			
 		List<GrowthDataSet> gdsList =  new DBHelper(this).getGrowthDao()
 			.queryForEq("tag_id", tagScanned.getUpcCode());
+		InsectDataSet ids;
+		DiseaseDataSet dds;
+		MaintenanceDataSet mds;
 
 		if(tagScanned != null)
 		((TextView) findViewById(R.id.metatext))
 			.setText("Control?: " + tagScanned.getIsControl() 
 					+" Variety: " + tagScanned.getPlantVariety());
 		
+		StringBuilder sb;
+		Date date = new Date();
 		for(GrowthDataSet item : gdsList) {
-			listItems.add(item.getTimestamp().toString());
+			sb = new StringBuilder();
+			date = item.getTimestamp();
+			sb.append(date);
+			sb.append("\nheight: " + item.getHeightOfPlant());
+			sb.append("\n#leaves: " + item.getNumOfLeaves());
+			sb.append("\n#berries: " + item.getNumOfBerries());
+			sb.append("\nnotes: " + item.getNotes());
+			
+			ids = new DBHelper(this).getInsectDao().queryForId(date);
+			if(ids != null) {
+				sb.append("\ninsects?: " + ids.getInsectsPresent());
+				sb.append("\nnotes: " + ids.getNotes());
+			}
+			
+			dds = new DBHelper(this).getDiseaseDao().queryForId(date);
+			if(dds != null) {
+				sb.append("\ndisease?: " + dds.getDiseasePresent());
+				sb.append("\nnotes: " + dds.getNotes());
+			}
+			
+			mds = new DBHelper(this).getMaintenanceDao().queryForId(date);
+			if(mds != null) {
+				sb.append("\npruned?: " + mds.getPruned());
+				sb.append("\nshock treated?: " + mds.getShockTreated());
+				sb.append("\nnotes: " + mds.getNotes());
+			}
+			
+			listItems.add(sb.toString());
 		}
+		
 		
 		return listItems;
 		}
@@ -59,6 +106,7 @@ public class ViewDataActivity extends ListActivity {
 			return null;
 		}
 	}
+	
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) { 

@@ -61,7 +61,8 @@ public class GrowthDataActivity extends TrojanSmartFarmActivity {
 		int numOfBerries = Integer.parseInt(((EditText) findViewById(R.id.numBerriesEdit)).getText().toString());
 		int heightOfPlant = Integer.parseInt(((EditText) findViewById(R.id.heightEdit)).getText().toString());
 		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		GrowthDataSet gds = new GrowthDataSet(tag, new Date(), photo, notes, 
+		TrojanSmartFarmActivity.timestamp = new Date();
+		GrowthDataSet gds = new GrowthDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, 
 			numOfLeaves, numOfBerries, heightOfPlant);
 		Dao<GrowthDataSet, Date> growthDao = new DBHelper(this).getGrowthDao();
 		growthDao.create(gds);

@@ -36,16 +36,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTableIfNotExists(connectionSource, InsectDataSet.class);
 			TableUtils.createTableIfNotExists(connectionSource, DiseaseDataSet.class);
 			TableUtils.createTableIfNotExists(connectionSource, MaintenanceDataSet.class);
-
-			// here we try inserting data in the on-create as a test
-			Dao<IDTag, String> dao = getSimpleDataDao();
-			String millis = String.valueOf(System.currentTimeMillis());
-			// create some entries in the onCreate
-			IDTag simple = new IDTag(millis, true, "test");
-			dao.create(simple);
-			simple = new IDTag(millis + 1, true, "test");
-			dao.create(simple);
-			Log.i(DBHelper.class.getName(), "created new entries in onCreate: " + millis);
+			Log.i(DBHelper.class.getName(), "DBHelper created.");
 		}
 		catch (SQLException e) {
 			Log.e(DBHelper.class.getName(), "Can't create database", e);

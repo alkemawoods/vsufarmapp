@@ -50,7 +50,7 @@ public class DiseaseDataActivity extends TrojanSmartFarmActivity {
 		String notes = ((EditText) findViewById(R.id.diseaseNotesEdit)).getText().toString();
 		boolean diseasePresent = ((CheckBox) findViewById(R.id.diseaseCheck)).isChecked();
 		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		DiseaseDataSet dds = new DiseaseDataSet(tag, new Date(), photo, notes, diseasePresent);
+		DiseaseDataSet dds = new DiseaseDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, diseasePresent);
 		Dao<DiseaseDataSet, Date> diseaseDao = new DBHelper(this).getDiseaseDao();
 		diseaseDao.create(dds);
 		Toast.makeText(this, "Data was saved.", Toast.LENGTH_LONG).show();
