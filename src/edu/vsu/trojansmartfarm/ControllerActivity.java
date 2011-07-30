@@ -22,20 +22,17 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_TAG, "creating " + getClass());
 		TextView tv = new TextView(this);
-		doSampleDatabaseStuff("onCreate", tv);
+		initialSetup("onCreate", tv);
 		setContentView(tv);
 	}
 	
-	/**
-	 * Do our sample database stuff.
-	 */
-	private void doSampleDatabaseStuff(String action, TextView tv) {
+	
+	private void initialSetup(String action, TextView tv) {
 		try {
-			// get our dao
 			Dao<IDTag, String> simpleDao = getHelper().getSimpleDataDao();
 			// query for all of the data objects in the database
 			List<IDTag> list = simpleDao.queryForAll();
-			// our string builder for building the content-view
+			// our string builder for building the content view
 			StringBuilder sb = new StringBuilder();
 			sb.append("Found ").append(list.size()).append(" tags in database.\n");
 
@@ -47,34 +44,7 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 				simpleC++;
 			}
 			sb.append("------------------------------------------\n");
-			//for (IDTag simple : list) {
-			//int ret = simpleDao.delete(simple);
-			//	sb.append("deleted id " + simple.getUpcCode() + " returned ").append(ret).append("\n");
-			//	Log.i(LOG_TAG, "deleting simple(" + simple.getUpcCode() + ") returned " + ret);
-			//	simpleC++;
-			//}
-
-			int createNum;
-			do {
-				createNum = new Random().nextInt(3) + 1;
-			} while (createNum == list.size());
-			for (int i = 0; i < createNum; i++) {
-				// create a new simple object
-				//String millis = String.valueOf(System.currentTimeMillis());
-				//IDTag simple = new IDTag(millis, true, "Test");
-				// store it in the database
-				//simpleDao.create(simple);
-				//Log.i(LOG_TAG, "created simple(" + millis + ")");
-				// output it
-				//sb.append("------------------------------------------\n");
-				//sb.append("created new entry #").append(i + 1).append(":\n");
-				//sb.append(simple).append("\n");
-				//try {
-				//	Thread.sleep(5);
-				//} catch (InterruptedException e) {
-					// ignore
-				//}
-			}
+			sb.append("Press MENU key for options.\n");
 
 			tv.setText(sb.toString());
 		} catch (SQLException e) {
