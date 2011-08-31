@@ -11,6 +11,7 @@ public class GrowthDataSet extends DataSet {
 	@DatabaseField
 	private int heightOfPlant;
 	
+	// empty constructor required by ORMLite
 	GrowthDataSet() {}
 	
 	GrowthDataSet(IDTag tag, Date timestamp, byte[] photo, String notes, 

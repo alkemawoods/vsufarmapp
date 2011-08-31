@@ -8,6 +8,7 @@ public class DiseaseDataSet extends DataSet {
 	@DatabaseField
 	private boolean diseasePresent;
 	
+	// empty constructor required by ORMLite 
 	DiseaseDataSet() {}
 	
 	DiseaseDataSet(IDTag tag, Date timestamp, byte[] photo, String notes, 

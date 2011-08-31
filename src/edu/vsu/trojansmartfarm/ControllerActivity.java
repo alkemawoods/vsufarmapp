@@ -3,7 +3,6 @@ package edu.vsu.trojansmartfarm;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,7 +14,8 @@ import com.j256.ormlite.dao.Dao;
 public class ControllerActivity extends TrojanSmartFarmActivity {
 	private final String LOG_TAG = getClass().getSimpleName();
 	protected static Date timestamp;
-	protected static IDTag lastIDTagScanned;
+	protected static IDTag newlyCreatedTag;
+	protected static IDTag activeTag;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 	
 	private void initialSetup(String action, TextView tv) {
 		try {
-			Dao<IDTag, String> simpleDao = getHelper().getSimpleDataDao();
+			Dao<IDTag, String> simpleDao = getHelper().getIDTagDao();
 			// query for all of the data objects in the database
 			List<IDTag> list = simpleDao.queryForAll();
 			// our string builder for building the content view
@@ -37,11 +37,11 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 			sb.append("Found ").append(list.size()).append(" tags in database.\n");
 
 			// if we already have items in the database
-			int simpleC = 0;
-			for (IDTag simple : list) {
+			int count = 0;
+			for (IDTag tag : list) {
 				sb.append("------------------------------------------\n");
-				sb.append("[" + simpleC + "] = ").append(simple).append("\n");
-				simpleC++;
+				sb.append("[" + count + "] = ").append(tag.getUID()).append("\n");
+				count++;
 			}
 			sb.append("------------------------------------------\n");
 			sb.append("Press MENU key for options.\n");
@@ -58,8 +58,5 @@ public class ControllerActivity extends TrojanSmartFarmActivity {
 	protected void scanCallback(String upc) {}
 
 	@Override
-	void usePhoto(Bitmap bmp) {
-		// TODO Auto-generated method stub
-		
-	}
+	void usePhoto(Bitmap bmp) {}
 }

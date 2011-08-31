@@ -1,5 +1,6 @@
 package edu.vsu.trojansmartfarm;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,9 +40,9 @@ public class TagActivity extends TrojanSmartFarmActivity {
 		isControl = rb.isChecked();
 		IDTag tag = new IDTag(upcCode, isControl, variety);
 		dao.createOrUpdate(tag);
+		ControllerActivity.newlyCreatedTag = tag;
 		Toast.makeText(this, "Tag was created/updated successfully.", Toast.LENGTH_SHORT).show();
-		//startActivity(new Intent(this, ControllerActivity.class));
-		
+		startActivity(new Intent(this, GrowthDataActivity.class));	
 	}
 
 	@Override

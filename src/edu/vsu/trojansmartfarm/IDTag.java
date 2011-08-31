@@ -4,7 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 
 public class IDTag {
 	@DatabaseField (id = true)
-	private String upcCode;
+	private String UID;
 	@DatabaseField 
 	private boolean isControl;
 	@DatabaseField
@@ -13,13 +13,13 @@ public class IDTag {
 	// empty default constructor required by ORMLite
 	public IDTag() {}
 	
-	public IDTag(String upcCode, boolean isControl, String plantVariety) {
-		this.upcCode = upcCode;
+	public IDTag(String UID, boolean isControl, String plantVariety) {
+		this.UID = UID;
 		this.isControl = isControl;
 		this.plantVariety = plantVariety;
 	}
 	
-	public String getUpcCode() { return upcCode; }
+	public String getUID() { return UID; }
 	public boolean getIsControl() { return isControl; }
 	public String getPlantVariety() { return plantVariety; }
 }

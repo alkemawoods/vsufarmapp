@@ -28,15 +28,20 @@ public class GrowthDataActivity extends TrojanSmartFarmActivity {
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_TAG, "creating " + getClass());
 		setContentView(R.layout.growthdata);
-		IntentIntegrator.initiateScan(this);
-		ControllerActivity.timestamp = new Date();
+		
+		if(ControllerActivity.newlyCreatedTag == null) 
+			IntentIntegrator.initiateScan(this);
+		else {
+			ControllerActivity.activeTag = getIDTag(this, ControllerActivity.newlyCreatedTag.getUID());
+			ControllerActivity.newlyCreatedTag = null;
+		}
 	  }    
 	
 	@Override
 	protected void scanCallback(String upc) {
-		ControllerActivity.currentTag = getIDTag(this, upc);
-		if(TrojanSmartFarmActivity.currentTag != null)
-			Toast.makeText(this, "Found " + TrojanSmartFarmActivity.currentTag.getUpcCode(), Toast.LENGTH_LONG).show();
+		ControllerActivity.activeTag = getIDTag(this, upc);
+		if(ControllerActivity.activeTag != null)
+			Toast.makeText(this, "Found " + ControllerActivity.activeTag.getUID(), Toast.LENGTH_LONG).show();
 		else {
 			Toast.makeText(this, "Tag was not found in database.", Toast.LENGTH_LONG).show();
 			startTagActivity();
@@ -52,7 +57,7 @@ public class GrowthDataActivity extends TrojanSmartFarmActivity {
 		photo = bitmapdata;
 		findViewById(R.id.growthPhotoButton).setVisibility(android.view.View.INVISIBLE);
 		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
-		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 50, 75, false));
+		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 100, 150, false));
 	}
 	
 	public void saveGrowthData(View v) throws SQLException {
@@ -60,16 +65,13 @@ public class GrowthDataActivity extends TrojanSmartFarmActivity {
 		int numOfLeaves = Integer.parseInt(((EditText) findViewById(R.id.numLeavesEdit)).getText().toString());
 		int numOfBerries = Integer.parseInt(((EditText) findViewById(R.id.numBerriesEdit)).getText().toString());
 		int heightOfPlant = Integer.parseInt(((EditText) findViewById(R.id.heightEdit)).getText().toString());
-		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		TrojanSmartFarmActivity.timestamp = new Date();
-		GrowthDataSet gds = new GrowthDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, 
+		IDTag tag = ControllerActivity.activeTag;
+		ControllerActivity.timestamp = new Date();
+		GrowthDataSet gds = new GrowthDataSet(tag, ControllerActivity.timestamp, photo, notes, 
 			numOfLeaves, numOfBerries, heightOfPlant);
 		Dao<GrowthDataSet, Date> growthDao = new DBHelper(this).getGrowthDao();
 		growthDao.create(gds);
-		Toast.makeText(this, "Data was saved.", Toast.LENGTH_LONG).show();
-	}
-	
-	public void startInsectDataActivity(View v) {
+		Toast.makeText(this, "Growth data saved.", Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this, InsectDataActivity.class);
 		startActivity(intent);
 	}

@@ -44,20 +44,17 @@ public class InsectDataActivity extends TrojanSmartFarmActivity {
 		photo = bitmapdata;
 		findViewById(R.id.insectPhotoButton).setVisibility(android.view.View.INVISIBLE);
 		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
-		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 50, 75, false));
+		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 100, 150, false));
 	}
 	
 	public void saveInsectData(View v) throws SQLException {
 		String notes = ((EditText) findViewById(R.id.insectNotesEdit)).getText().toString();
 		boolean insectsPresent = ((CheckBox) findViewById(R.id.insectsCheck)).isChecked();
-		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		InsectDataSet ids = new InsectDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, insectsPresent);
+		IDTag tag = ControllerActivity.activeTag;
+		InsectDataSet ids = new InsectDataSet(tag, ControllerActivity.timestamp, photo, notes, insectsPresent);
 		Dao<InsectDataSet, Date> insectDao = new DBHelper(this).getInsectDao();
 		insectDao.create(ids);
-		Toast.makeText(this, "Data was saved.", Toast.LENGTH_LONG).show();
-	}
-	
-	public void startDiseaseDataActivity(View v) {
+		Toast.makeText(this, "Insect data saved.", Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this, DiseaseDataActivity.class);
 		startActivity(intent);
 	}

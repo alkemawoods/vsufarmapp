@@ -43,20 +43,17 @@ public class DiseaseDataActivity extends TrojanSmartFarmActivity {
 		photo = bitmapdata;
 		findViewById(R.id.diseasePhotoButton).setVisibility(android.view.View.INVISIBLE);
 		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
-		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 50, 75, false));
+		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 100, 150, false));
 	}
 	
 	public void saveDiseaseData(View v) throws SQLException {
 		String notes = ((EditText) findViewById(R.id.diseaseNotesEdit)).getText().toString();
 		boolean diseasePresent = ((CheckBox) findViewById(R.id.diseaseCheck)).isChecked();
-		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		DiseaseDataSet dds = new DiseaseDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, diseasePresent);
+		IDTag tag = ControllerActivity.activeTag;
+		DiseaseDataSet dds = new DiseaseDataSet(tag, ControllerActivity.timestamp, photo, notes, diseasePresent);
 		Dao<DiseaseDataSet, Date> diseaseDao = new DBHelper(this).getDiseaseDao();
 		diseaseDao.create(dds);
-		Toast.makeText(this, "Data was saved.", Toast.LENGTH_LONG).show();
-	}
-	
-	public void startMaintenanceDataActivity(View v) {
+		Toast.makeText(this, "Disease data saved.", Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this, MaintenanceDataActivity.class);
 		startActivity(intent);
 	}

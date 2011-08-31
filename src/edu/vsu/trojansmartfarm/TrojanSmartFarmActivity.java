@@ -25,9 +25,6 @@ import com.j256.ormlite.dao.Dao;
 abstract public class TrojanSmartFarmActivity extends OrmLiteBaseActivity<DBHelper> {
 	private final String LOG_TAG = getClass().getSimpleName();
 	
-	public static IDTag currentTag;
-	public static Date timestamp;
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();

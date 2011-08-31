@@ -3,8 +3,8 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/tag_menitem" android:icon="@drawable/ic_menu_tag" android:title="@string/tag_menu_label"></item>
     <item android:id="@+id/weather_menitem" android:title="@string/weather_menu_label" android:icon="@drawable/ic_menu_cloud"></item>
-    <item android:id="@+id/newdata_menitem" android:icon="@drawable/ic_menu_chart" android:title="Enter Data"></item>
-    <item android:title="Sensor Data" android:id="@+id/sensordata_menitem" android:icon="@drawable/ic_menu_disc"></item>
+    <item android:id="@+id/newdata_menitem" android:icon="@drawable/ic_menu_chart" android:title="@string/enterdata"></item>
+    <item android:id="@+id/sensordata_menitem" android:icon="@drawable/ic_menu_disc" android:title="@string/sensordata"></item>
 <item android:title="@string/scan_menu_label" android:id="@+id/scan_menitem" android:icon="@drawable/ic_menu_barcode"></item>
 <item android:title="@string/exit_menu_label" android:icon="@drawable/ic_menu_exit" android:id="@+id/exit_menitem"></item>
 </menu>

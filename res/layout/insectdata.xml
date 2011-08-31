@@ -21,5 +21,4 @@
     </TableLayout>
     <EditText android:inputType="textMultiLine" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/insectNotesEdit"></EditText>
     <Button android:id="@+id/button1" android:layout_height="wrap_content" android:text="@string/savedata" android:layout_width="match_parent" android:onClick="saveInsectData"></Button>
-    <Button android:id="@+id/button2" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/diseasedata_label" android:onClick="startDiseaseDataActivity"></Button>
 </LinearLayout>

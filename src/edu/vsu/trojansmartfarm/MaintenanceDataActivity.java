@@ -43,18 +43,18 @@ public class MaintenanceDataActivity extends TrojanSmartFarmActivity {
 		photo = bitmapdata;
 		findViewById(R.id.maintenancePhotoButton).setVisibility(android.view.View.INVISIBLE);
 		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
-		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 50, 75, false));
+		image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 100, 150, false));
 	}
 	
 	public void saveMaintenanceData(View v) throws SQLException {
 		String notes = ((EditText) findViewById(R.id.maintenanceNotesEdit)).getText().toString();
 		boolean pruned = ((CheckBox) findViewById(R.id.prunedCheck)).isChecked();
 		boolean shocked = ((CheckBox) findViewById(R.id.shockCheck)).isChecked();
-		IDTag tag = TrojanSmartFarmActivity.currentTag;
-		MaintenanceDataSet mds = new MaintenanceDataSet(tag, TrojanSmartFarmActivity.timestamp, photo, notes, pruned, shocked);
+		IDTag tag = ControllerActivity.activeTag;
+		MaintenanceDataSet mds = new MaintenanceDataSet(tag, ControllerActivity.timestamp, photo, notes, pruned, shocked);
 		Dao<MaintenanceDataSet, Date> maintenanceDao = new DBHelper(this).getMaintenanceDao();
 		maintenanceDao.create(mds);
-		Toast.makeText(this, "Data was saved.", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, "Maintenance data saved.", Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this, ControllerActivity.class);
 		startActivity(intent);
 	}

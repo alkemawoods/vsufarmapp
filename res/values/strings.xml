@@ -28,4 +28,6 @@
     <string name="scan_menu_label">Scan &amp; Retrieve</string>
     <string name="data_menu_label">Enter Data</string>
     <string name="exit_menu_label">Exit</string>
+    <string name="sensordata">Sensor Data</string>
+    <string name="enterdata">Enter Data</string>
 </resources>

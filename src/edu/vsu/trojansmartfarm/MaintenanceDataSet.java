@@ -10,6 +10,7 @@ public class MaintenanceDataSet extends DataSet {
 	@DatabaseField
 	private boolean pruned;
 	
+	// empty constructor required by ORMLite
 	MaintenanceDataSet() {}
 	
 	MaintenanceDataSet(IDTag tag, Date timestamp, byte[] photo, String notes,

@@ -8,6 +8,7 @@ public class InsectDataSet extends DataSet {
 	@DatabaseField
 	private boolean insectsPresent;
 	
+	// empty constructer required by ORMLite
 	InsectDataSet() {}
 	
 	InsectDataSet(IDTag tag, Date timestamp, byte[] photo, String notes,

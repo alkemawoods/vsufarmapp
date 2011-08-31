@@ -15,6 +15,7 @@ import com.j256.ormlite.table.TableUtils;
 public class DBHelper extends OrmLiteSqliteOpenHelper {
 	private static final String DATABASE_NAME = "trojanSmartFarm.db";
 	private static final int DATABASE_VERSION = 1;
+	private final String LOG_TAG = getClass().getName();
 
 
 	Dao<IDTag, String> idTagDao = null;
@@ -44,49 +45,63 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 		} 
 	}
 	
-	/**
-	 * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
-	 * value.
-	 */
-	public Dao<IDTag, String> getSimpleDataDao() throws SQLException {
-		if (idTagDao == null) {
+	public Dao<IDTag, String> getIDTagDao() {
+		if(idTagDao == null) 
+		try {
 			idTagDao = getDao(IDTag.class);
+		}
+		catch(SQLException e) {
+			Log.e(LOG_TAG, "SQL error on getIDTagDao().", e);
+			throw new RuntimeException(e);
 		}
 		return idTagDao;
 	}
 	
-	public Dao<IDTag, String> getIDTagDao() throws SQLException {
-		if(idTagDao == null) {
-			idTagDao = getDao(IDTag.class);
-		}
-		return idTagDao;
-	}
-	
-	public Dao<InsectDataSet, Date> getInsectDao() throws SQLException {
-		if(insectDao == null) {
+	public Dao<InsectDataSet, Date> getInsectDao() {
+		if(insectDao == null) 
+		try {
 			insectDao = getDao(InsectDataSet.class);
+		}
+		catch(SQLException e) {
+			Log.e(LOG_TAG, "SQL error on getInsectDao().", e);
+			throw new RuntimeException(e);
 		}
 		return insectDao;
 	}
 	
-	public Dao<DiseaseDataSet, Date> getDiseaseDao() throws SQLException {
-		if(diseaseDao == null) {
+	public Dao<DiseaseDataSet, Date> getDiseaseDao() {
+		if(diseaseDao == null) 
+		try {
 			diseaseDao = getDao(DiseaseDataSet.class);
+		}
+		catch(SQLException e) {
+			Log.e(LOG_TAG, "SQL error on getDiseaseDao().", e);
+			throw new RuntimeException(e);
 		}
 		return diseaseDao;
 	}
 	
-	public Dao<GrowthDataSet, Date> getGrowthDao() throws SQLException {
-		if(growthDao == null) {
-			growthDao = getDao(GrowthDataSet.class);
-		}
+	public Dao<GrowthDataSet, Date> getGrowthDao() {
+		if(growthDao == null) 
+			try {
+				growthDao = getDao(GrowthDataSet.class);
+			}
+			catch(SQLException e) {
+				Log.e(LOG_TAG, "SQL error on getGrowthDao().", e);
+				throw new RuntimeException(e);
+			}
 		return growthDao;
 	}
 	
-	public Dao<MaintenanceDataSet, Date> getMaintenanceDao() throws SQLException {
-		if(maintenanceDao == null) {
-			maintenanceDao = getDao(MaintenanceDataSet.class);
-		}
+	public Dao<MaintenanceDataSet, Date> getMaintenanceDao() {
+		if(maintenanceDao == null) 
+			try {
+				maintenanceDao = getDao(MaintenanceDataSet.class);
+			}
+			catch(SQLException e) {
+				Log.e(LOG_TAG, "SQL error on getMaintenanceDao().", e);
+				throw new RuntimeException(e);
+			}
 		return maintenanceDao;
 	}
 
@@ -102,10 +117,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, DiseaseDataSet.class, true);
 			TableUtils.dropTable(connectionSource, MaintenanceDataSet.class, true);
 			
-			// after we drop the old databases, we create the new ones
+			// after we drop the old database, we create the new one
 			onCreate(db, connectionSource);
 		} catch (SQLException e) {
-			Log.e(DBHelper.class.getName(), "Can't drop databases", e);
+			Log.e(LOG_TAG, "Can't drop databases", e);
 			throw new RuntimeException(e);
 		}
 	}
