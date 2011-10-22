@@ -51,7 +51,7 @@ public class MaintenanceDataActivity extends TrojanSmartFarmActivity {
 		boolean pruned = ((CheckBox) findViewById(R.id.prunedCheck)).isChecked();
 		boolean shocked = ((CheckBox) findViewById(R.id.shockCheck)).isChecked();
 		IDTag tag = ControllerActivity.activeTag;
-		MaintenanceDataSet mds = new MaintenanceDataSet(tag, ControllerActivity.timestamp, photo, notes, pruned, shocked);
+		MaintenanceDataSet mds = new MaintenanceDataSet(tag, ControllerActivity.timestamp, photo, notes, shocked, pruned);
 		Dao<MaintenanceDataSet, Date> maintenanceDao = new DBHelper(this).getMaintenanceDao();
 		maintenanceDao.create(mds);
 		Toast.makeText(this, "Maintenance data saved.", Toast.LENGTH_LONG).show();

@@ -5,11 +5,11 @@ import com.j256.ormlite.field.DatabaseField;
 
 public class GrowthDataSet extends DataSet {
 	@DatabaseField
-	private int numOfLeaves;
+	private Integer numOfLeaves;
 	@DatabaseField
-	private int numOfBerries;
+	private Integer numOfBerries;
 	@DatabaseField
-	private int heightOfPlant;
+	private Integer heightOfPlant;
 	
 	// empty constructor required by ORMLite
 	GrowthDataSet() {}
@@ -22,7 +22,7 @@ public class GrowthDataSet extends DataSet {
 		this.heightOfPlant = heightOfPlant;
 	}
 	
-	int getNumOfLeaves() { return numOfLeaves; }
-	int getNumOfBerries() { return numOfBerries; }
-	int getHeightOfPlant() { return heightOfPlant; }
+	Integer getNumOfLeaves() { return numOfLeaves; }
+	Integer getNumOfBerries() { return numOfBerries; }
+	Integer getHeightOfPlant() { return heightOfPlant; }
 }
